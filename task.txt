@@ -1,0 +1,8 @@
+You are to measure the speed vector of the baseball.
+The extra information is as follows:
+There are 15 images in the folder. They are taken at a fixed interval of 240fps. The camera parameters are as follows:
+Pixel size 0.0048mm
+Full resolution 1280x1024
+Focal length FL 8mm
+Radius of baseball 0.0373 meter.
+The camera is tilted 10 degree upwards towards the sky. It is sitting on the ground 4 meters away from where the ball starts.
