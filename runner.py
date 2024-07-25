@@ -33,6 +33,13 @@ class Runner:
             # Detect Ball
             self.ball_detector.process(message)
             
+            # Ground Truth Equalizer
+            # It is used to test world coordinate estimator and speed vector estimator
+            # It should be commented out when considering ball detector
+            message.metadata.ball_bbox = message.metadata.gt_ball_bbox
+            message.metadata.ball_2d_points = message.metadata.gt_ball_2d_points
+            message.metadata.ball_2d_center = message.metadata.gt_ball_2d_center
+            
             # Estimate World Coordinates
             self.world_coordinate_estimator.process(message)
             

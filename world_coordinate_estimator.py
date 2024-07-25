@@ -5,7 +5,7 @@ class WorldCoordinateEstimator:
         self.configuration = configuration
         self.strategy_name = configuration.world_coordinate_estimator_strategy
         if self.strategy_name == "default":
-            self.strategy = DefaultWorldCoordinateEstimatorStrategy()
+            self.strategy = DefaultWorldCoordinateEstimatorStrategy(self.configuration)
         else:
             raise ValueError("Invalid world coordinate estimator strategy: " + self.strategy_name)
         
