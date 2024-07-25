@@ -2,8 +2,8 @@
 camera:
   fps: 240
   pixel_size: 0.0000048
-  width: 1280
-  height: 1024
+  width: 1024
+  height: 1280
   focal_length: 0.008
 
 # Ball Parameters
