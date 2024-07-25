@@ -14,7 +14,7 @@ class Runner:
     def __init__(self, configuration_file_path):
         self.configuration = Configuration(configuration_file_path)
         self.output_file_path = self.configuration.output_file_path
-        self.message_factory = MessageFactory('images', 'IMG%d.bmp', 1)
+        self.message_factory = MessageFactory('images', 'IMG%d.bmp', 1, 'gt_masks', 'IMG%d.png', 1)
         self.metadata_printer = MetadataPrinter(expand_lists=False)
         self.dummy_metadata_generator = DummyMetadataGenerator()
         self.gt_error_calculator = GroundTruthErrorCalculator()
@@ -40,6 +40,8 @@ class Runner:
             self.speed_vector_estimator.process(message)
             
             # Fill dummy message metadata
+            # It is used to test the metadata printer and metadata exporter
+            # Also it is used to test plotter
             # self.dummy_metadata_generator.process(message)
             
             # Compare with Ground Truth
