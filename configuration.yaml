@@ -1,0 +1,26 @@
+# Camera Parameters
+camera:
+  fps: 240
+  pixel_size: 0.0000048
+  width: 1280
+  height: 1024
+  focal_length: 0.008
+
+# Ball Parameters
+ball:
+  radius: 0.0373
+
+# Setup Parameters
+setup:
+  camera_upward_tilt_angle: 10.0
+  initial_distance_between_camera_and_ball: 4.0
+
+# Strategy Parameters
+strategy:
+  ball_detector: "default"
+  world_coordinate_estimator: "default"
+  speed_vector_estimator: "default"
+
+# Experiment Parameters
+experiment:
+  output_file_path: "output.csv"
