@@ -109,54 +109,26 @@ class DefaultWorldCoordinateEstimatorStrategy:
         self.initialized_with_first_frame = False
         self.ball_area_in_pixel_when_4_meter_far_away = None
                 
-    def process(self, bbox, points_2d, center_2d):
+    def process(self, bbox):
         center_2d_matrix = np.zeros((3, 1), dtype = "float32")
-        center_2d_matrix[0,0] = center_2d.x
-        center_2d_matrix[1,0] = center_2d.y
+        center_2d_matrix[0,0] = bbox.x + bbox.w / 2
+        center_2d_matrix[1,0] = bbox.x + bbox.h / 2
         center_2d_matrix[2,0] = 1
         
         # constant_factor = math.pi * self.focal_length * self.focal_length * self.ball_radius * self.ball_radius
         # constant_factor /= (self.pixel_size * self.pixel_size)
-        # calculated_distance = math.sqrt(constant_factor / len(points_2d))
+        # calculated_distance = math.sqrt(constant_factor / (bbox.w * bbox.h))
         # center_3d = self.__transform_2d_to_3d_point(center_2d_matrix, calculated_distance)
         
         if not self.initialized_with_first_frame:
-            self.ball_area_in_pixel_when_4_meter_far_away = float(len(points_2d))
+            self.ball_area_in_pixel_when_4_meter_far_away = bbox.w * bbox.h
             self.initialized_with_first_frame = True
             center_3d = self.__transform_2d_to_3d_point(center_2d_matrix, self.initial_distance_between_camera_and_ball)
         else:
-            center_3d = self.__transform_2d_to_3d_point(center_2d_matrix, self.initial_distance_between_camera_and_ball * math.sqrt(self.ball_area_in_pixel_when_4_meter_far_away / len(points_2d)))
-        
-        points_3d = []
-        
-        # for point_2d in points_2d:
-        #     point_2d_matrix = np.zeros((3, 1), dtype = "float32")
-        #     point_2d_matrix[0,0] = point_2d.x
-        #     point_2d_matrix[1,0] = point_2d.y
-        #     point_2d_matrix[2,0] = 1
-            
-        #     if not self.initialized_with_first_frame:
-        #         point_3d = self.__transform_2d_to_3d_point(point_2d_matrix, self.initial_distance_between_camera_and_ball)
-        #     else:
-        #         point_3d = self.__transform_2d_to_3d_point(point_2d_matrix, self.initial_distance_between_camera_and_ball * math.sqrt(self.ball_area_in_pixel_when_4_meter_far_away / len(points_2d)))
-            
-        #     # Until now, all points are treated as a plane, not on a spherical surface
-            
-        #     # Projection of sphere to a plane is a ellipse
-        #     # An ellipse has center point, major axis, minor axis and rotation angle
-        #     # But we will use a trick to simplify the problem
-        #     # A ray from the center of the ellipse to the point
-        #     # Will intersect boundary of the ellipse at some point
-        #     # And the distance between the center of the ellipse and that point
-        #     # Is magically approximately equal to the radius of baseball
-        #     ray_vector = point_2d - center_2d
-        #     ray_vector = ray_vector / np.linalg.norm(ray_vector)
-        #     boundary_point = center_2d + ray_vector * 1000 # 1000 is a big enough number to choose outside of the ellipse
-            
-        #     points_3d.append(message.Point3D(point_3d[0],point_3d[1],point_3d[2]))
+            center_3d = self.__transform_2d_to_3d_point(center_2d_matrix, self.initial_distance_between_camera_and_ball * math.sqrt(self.ball_area_in_pixel_when_4_meter_far_away / (bbox.w * bbox.h)))
         
         center_3d = message.Point3D(center_3d[0],center_3d[1],center_3d[2])
-        return points_3d, center_3d
+        return center_3d
     
     def __transform_3d_to_2d_point(self, point_3d):
         transformed_3d_point = np.matmul(self.transform_matrix, point_3d)

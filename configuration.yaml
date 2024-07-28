@@ -18,11 +18,17 @@ setup:
 # Strategy Parameters
 strategy:
   ball_detector: "default"
+  ball_tracker: "default"
   world_coordinate_estimator: "default"
   speed_vector_estimator: "default"
 
 # Ball Detector Parameters
 ball_detector:
+  yolov8_model_size: "x" # n s m l x
+  ball_class_id: 32
+
+# Ball Tracker Parameters
+ball_tracker:
   dummy_parameter: 0
 
 # World Coordinate Estimator Parameters

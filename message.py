@@ -4,34 +4,33 @@ class Bbox:
         self.y = y
         self.w = w
         self.h = h
+    def __str__(self) -> str:
+        return f'({self.x}, {self.y}, {self.w}, {self.h})'
 
 class Point2D:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+    def __str__(self) -> str:
+        return f'({self.x}, {self.y})'
 
 class Point3D:
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z
+    def __str__(self) -> str:
+        return f'({self.x}, {self.y}, {self.z})'
 
 class Metadata:
-    ball_bbox = None
-    ball_2d_points = None
-    ball_2d_center = None
-    ball_3d_points = None
+    ball_bboxes = None
+    ball_target_bbox = None
     ball_3d_center = None
-    ball_3d_points_speed_vectors = None
     ball_avg_3d_speed_vector = None
     
     gt_ball_bbox = None
-    gt_ball_2d_points = None
-    gt_ball_2d_center = None
     
     gt_ball_bbox_iou = None # Intersection over Union of measures and ground truth
-    gt_ball_2d_points_symmetric_difference_error = None # Number of elements of symmetric difference set of measures and ground truth divided by number of elements of ground truth
-    gt_ball_2d_center_error = None # Euclidean distance between measures and ground truth
 
 class Message:
     image = None

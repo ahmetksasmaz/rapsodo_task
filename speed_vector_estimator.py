@@ -11,6 +11,5 @@ class SpeedVectorEstimator:
         
     def process(self, message):
         metadata = message.metadata
-        speed_vectors,  avg_speed_vector = self.strategy.process(metadata.ball_3d_points, metadata.ball_3d_center)
-        metadata.ball_3d_points_speed_vectors = speed_vectors
+        avg_speed_vector = self.strategy.process(message.message_id, metadata.ball_3d_center)
         metadata.ball_avg_3d_speed_vector = avg_speed_vector

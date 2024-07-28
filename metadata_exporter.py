@@ -18,6 +18,4 @@ class MetadataExporter:
             output_file.write(str(metadata.ball_avg_3d_speed_vector.x) + "\t")
             output_file.write(str(metadata.ball_avg_3d_speed_vector.y) + "\t")
             output_file.write(str(metadata.ball_avg_3d_speed_vector.z) + "\t")
-            output_file.write(str(metadata.gt_ball_bbox_iou) + "\t")
-            output_file.write(str(metadata.gt_ball_2d_points_symmetric_difference_error) + "\t")
-            output_file.write(str(metadata.gt_ball_2d_center_error) + "\n")
+            output_file.write(str(metadata.gt_ball_bbox_iou) + "\n")

@@ -12,8 +12,6 @@ class Plotter:
         "ball_avg_3d_speed_vector_y" : [],
         "ball_avg_3d_speed_vector_z" : [],
         "gt_ball_bbox_iou" : [],
-        "gt_ball_2d_points_symmetric_difference_error" : [],
-        "gt_ball_2d_center_error" : [],
     }
     
     def __init__(self, output_file_name):
@@ -30,8 +28,6 @@ class Plotter:
             self.data["ball_avg_3d_speed_vector_y"].append(float(parts[5]))
             self.data["ball_avg_3d_speed_vector_z"].append(float(parts[6]))
             self.data["gt_ball_bbox_iou"].append(float(parts[7]))
-            self.data["gt_ball_2d_points_symmetric_difference_error"].append(float(parts[8]))
-            self.data["gt_ball_2d_center_error"].append(float(parts[9]))
     def plot(self):
         frame_indices = np.array(self.data["message_id"])
         ball_3d_center_x = np.array(self.data["ball_3d_center_x"])
@@ -41,8 +37,6 @@ class Plotter:
         ball_avg_3d_speed_vector_y = np.array(self.data["ball_avg_3d_speed_vector_y"])
         ball_avg_3d_speed_vector_z = np.array(self.data["ball_avg_3d_speed_vector_z"])
         gt_ball_bbox_iou = np.array(self.data["gt_ball_bbox_iou"])
-        gt_ball_2d_points_symmetric_difference_error = np.array(self.data["gt_ball_2d_points_symmetric_difference_error"])
-        gt_ball_2d_center_error = np.array(self.data["gt_ball_2d_center_error"])
         ball_avg_speed = np.sqrt(ball_avg_3d_speed_vector_x ** 2 + ball_avg_3d_speed_vector_y ** 2 + ball_avg_3d_speed_vector_z ** 2)
         
         # Plotting Speed
@@ -54,23 +48,15 @@ class Plotter:
 
         # Plotting Ground Truth Errors
         gt_ball_bbox_iou_plot = plt.figure(2)
-        plt.plot(frame_indices, gt_ball_2d_points_symmetric_difference_error)
+        plt.plot(frame_indices, gt_ball_bbox_iou)
         gt_ball_bbox_iou_plot.savefig("gt_ball_bbox_iou_plot.png")
         plt.close(gt_ball_bbox_iou_plot)
-        gt_ball_2d_points_symmetric_difference_error_plot = plt.figure(3)
-        plt.plot(frame_indices, gt_ball_bbox_iou)
-        gt_ball_2d_points_symmetric_difference_error_plot.savefig("gt_ball_2d_points_symmetric_difference_error_plot.png")
-        plt.close(gt_ball_2d_points_symmetric_difference_error_plot)
-        gt_ball_2d_center_error_plot = plt.figure(4)
-        plt.plot(frame_indices, gt_ball_2d_center_error)
-        gt_ball_2d_center_error_plot.savefig("gt_ball_2d_center_error_plot.png")
-        plt.close(gt_ball_2d_center_error_plot)
         
         ball_3d_center_plot = plt.figure(4)
         ball_3d_center_plot.add_subplot(111, projection='3d')
         ax = plt.gca()
         ax.set_xlim([-1.0, 1.0])
-        ax.set_ylim([-0.5, 0.0])
+        ax.set_ylim([-2.0, 0.0])
         ax.set_zlim([0.0, 5.0])
         ax.set_xlabel('X')
         ax.set_ylabel('Y')

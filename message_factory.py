@@ -26,12 +26,10 @@ class MessageFactory:
         if ground_truth_mask is None:
             return None
         
-        gt_ball_bbox, gt_ball_2d_points, gt_ball_2d_center = self.__gt_metadata_extract(ground_truth_mask)
+        gt_ball_bbox = self.__gt_metadata_extract(ground_truth_mask)
         
         msg = message.Message(self.image_index, image)
         msg.metadata.gt_ball_bbox = gt_ball_bbox
-        msg.metadata.gt_ball_2d_points = gt_ball_2d_points
-        msg.metadata.gt_ball_2d_center = gt_ball_2d_center
         
         self.image_index += 1
         self.ground_truth_mask_index += 1
@@ -42,6 +40,4 @@ class MessageFactory:
         x = pts[1]
         y = pts[0]
         ball_bbox = message.Bbox(min(x), min(y), max(x) - min(x), max(y) - min(y))
-        ball_2d_points = [message.Point2D(x[i], y[i]) for i in range(len(x))]
-        ball_2d_center = message.Point2D(np.mean(x), np.mean(y))
-        return ball_bbox, ball_2d_points, ball_2d_center
+        return ball_bbox
