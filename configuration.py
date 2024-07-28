@@ -20,6 +20,15 @@ class Configuration:
     world_coordinate_estimator_strategy = None
     speed_vector_estimator_strategy = None
     
+    # Ball Detector Parameters
+    ball_detector_dummy_parameter = None
+
+    # World Coordinate Estimator Parameters
+    world_coordinate_estimator_dummy_parameter = None
+
+    # Speed Vector Estimator Parameters
+    speed_vector_estimator_history_depth = None
+    
     # Experiment parameters
     output_file_path = None
     
@@ -43,5 +52,9 @@ class Configuration:
             self.ball_detector_strategy = config_data['strategy']['ball_detector']
             self.world_coordinate_estimator_strategy = config_data['strategy']['world_coordinate_estimator']
             self.speed_vector_estimator_strategy = config_data['strategy']['speed_vector_estimator']
+            
+            self.ball_detector_dummy_parameter = config_data['ball_detector']['dummy_parameter']
+            self.world_coordinate_estimator_dummy_parameter = config_data['world_coordinate_estimator']['dummy_parameter']
+            self.speed_vector_estimator_history_depth = config_data['speed_vector_estimator']['history_depth']
             
             self.output_file_path = config_data['experiment']['output_file_path']

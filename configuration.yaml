@@ -21,6 +21,18 @@ strategy:
   world_coordinate_estimator: "default"
   speed_vector_estimator: "default"
 
+# Ball Detector Parameters
+ball_detector:
+  dummy_parameter: 0
+
+# World Coordinate Estimator Parameters
+world_coordinate_estimator:
+  dummy_parameter: 0
+
+# Speed Vector Estimator Parameters
+speed_vector_estimator:
+  history_depth: 15
+
 # Experiment Parameters
 experiment:
   output_file_path: "output.csv"

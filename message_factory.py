@@ -34,12 +34,13 @@ class MessageFactory:
         msg.metadata.gt_ball_2d_center = gt_ball_2d_center
         
         self.image_index += 1
+        self.ground_truth_mask_index += 1
         return msg
 
     def __gt_metadata_extract(self, ground_truth_mask):
         pts = np.where(ground_truth_mask == 255)
-        x = pts[0]
-        y = pts[1]
+        x = pts[1]
+        y = pts[0]
         ball_bbox = message.Bbox(min(x), min(y), max(x) - min(x), max(y) - min(y))
         ball_2d_points = [message.Point2D(x[i], y[i]) for i in range(len(x))]
         ball_2d_center = message.Point2D(np.mean(x), np.mean(y))

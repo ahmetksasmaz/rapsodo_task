@@ -5,7 +5,7 @@ class SpeedVectorEstimator:
         self.configuration = configuration
         self.strategy_name = configuration.speed_vector_estimator_strategy
         if self.strategy_name == "default":
-            self.strategy = DefaultSpeedVectorEstimatorStrategy()
+            self.strategy = DefaultSpeedVectorEstimatorStrategy(self.configuration)
         else:
             raise ValueError("Invalid speed vector estimator strategy: " + self.strategy_name)
         

@@ -1,10 +1,20 @@
+import cv2 as cv
+
 class MetadataPrinter:
     def __init__(self, expand_lists = False):
         self.expand_lists = expand_lists
         
     def process(self, message):
         message_id = message.message_id
+        image = message.image
         metadata = message.metadata
+        
+        # image = cv.cvtColor(image, cv.COLOR_GRAY2BGR)
+        # image[int(metadata.ball_2d_center.x)][int(metadata.ball_2d_center.y)][:] = [0,255,255]
+        # image[metadata.ball_bbox.y, metadata.ball_bbox.x:metadata.ball_bbox.x + metadata.ball_bbox.w, metadata.ball_bbox.y + metadata.ball_bbox.h] = 255
+        
+        cv.imwrite('output_images_' + str(message_id) + '.png', image)
+        
         print("#######################################")
         print("Start of Message ID : ", "\t>>>>>>>>>", str(message_id), "<<<<<<<<<")
         print("Ball Bounding Box [x,y,w,h] : ", "[", str(metadata.ball_bbox.x), ",", str(metadata.ball_bbox.y), ",", str(metadata.ball_bbox.w), ",", str(metadata.ball_bbox.h), "]")
