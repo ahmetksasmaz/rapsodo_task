@@ -164,3 +164,4 @@ cython_debug/
 *.csv
 *_plot.png
 output_images*.png
+*.pt
