@@ -40,4 +40,4 @@ speed_vector_estimator:
 
 # Experiment Parameters
 experiment:
-  output_file_path: "output.csv"
+  output_file_path: "outputs/metadata/output.csv"

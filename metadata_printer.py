@@ -11,7 +11,7 @@ class MetadataPrinter:
         image[int(metadata.ball_bbox.y + metadata.ball_bbox.h / 2)][int(metadata.ball_bbox.x + metadata.ball_bbox.w / 2)][:] = [0,255,255]
         cv.rectangle(image, (int(metadata.ball_bbox.x), int(metadata.ball_bbox.y)), (int(metadata.ball_bbox.x + metadata.ball_bbox.w), int(metadata.ball_bbox.y + metadata.ball_bbox.h)), (0,255,0), 2)
         
-        cv.imwrite('output_images_' + str(message_id) + '.png', image)
+        cv.imwrite('outputs/images/predicted_bbox_' + str(message_id) + '.png', image)
         
         print("#######################################")
         print("Start of Message ID : ", "\t>>>>>>>>>", str(message_id), "<<<<<<<<<")

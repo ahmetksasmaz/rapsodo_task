@@ -48,7 +48,7 @@ class Plotter:
         ax.set_ylabel('Speed')
         
         plt.plot(frame_indices, ball_avg_speed)
-        ball_avg_speed_plot.savefig("ball_avg_speed_plot.png")
+        ball_avg_speed_plot.savefig("outputs/plots/ball_avg_speed_plot.png")
         plt.close(ball_avg_speed_plot)
 
         # Plotting Ground Truth Errors
@@ -59,7 +59,7 @@ class Plotter:
         ax.set_xlabel('Frame Number')
         ax.set_ylabel('Ground Truth Ball Bbox IOU')
         plt.plot(frame_indices, gt_ball_bbox_iou)
-        gt_ball_bbox_iou_plot.savefig("gt_ball_bbox_iou_plot.png")
+        gt_ball_bbox_iou_plot.savefig("outputs/plots/gt_ball_bbox_iou_plot.png")
         plt.close(gt_ball_bbox_iou_plot)
         
         ball_3d_center_plot = plt.figure(4)
@@ -72,7 +72,7 @@ class Plotter:
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')
         plt.plot(ball_3d_center_x, ball_3d_center_y, ball_3d_center_z)
-        ball_3d_center_plot.savefig("ball_3d_center_plot.png")
+        ball_3d_center_plot.savefig("outputs/plots/ball_3d_center_plot.png")
         # plt.show()
         plt.close(ball_3d_center_plot)
 
