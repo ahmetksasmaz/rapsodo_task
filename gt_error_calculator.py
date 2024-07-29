@@ -6,7 +6,7 @@ class GroundTruthErrorCalculator:
     
     def process(self, msg):
         metadata = msg.metadata
-        metadata.gt_ball_bbox_iou = self.__calculate_iou(metadata.ball_target_bbox, metadata.gt_ball_bbox)
+        metadata.gt_ball_bbox_iou = self.__calculate_iou(metadata.ball_bbox, metadata.gt_ball_bbox)
         
     def __calculate_iou(self, bbox, gt_bbox):
         if not gt_bbox:

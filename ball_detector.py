@@ -11,5 +11,5 @@ class BallDetector:
         
     def process(self, msg):
         image = msg.image
-        bboxes = self.strategy.process(image)
-        msg.metadata.ball_bboxes = bboxes
+        bbox = self.strategy.process(image)
+        msg.metadata.ball_bbox = bbox

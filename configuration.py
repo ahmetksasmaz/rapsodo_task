@@ -17,7 +17,6 @@ class Configuration:
     
     # Strategy Parameters
     ball_detector_strategy = None
-    ball_tracker_strategy = None
     world_coordinate_estimator_strategy = None
     speed_vector_estimator_strategy = None
     
@@ -26,7 +25,9 @@ class Configuration:
     ball_detector_ball_class_id = None
 
     # Ball Tracker Parameters
-    ball_tracker_dummy_parameter = None
+    ball_detector_initial_search_region_bbox = None
+    ball_detector_history_depth = None
+    ball_detector_bbox_size_multiplier = None
     
     # World Coordinate Estimator Parameters
     world_coordinate_estimator_dummy_parameter = None
@@ -55,13 +56,14 @@ class Configuration:
             self.initial_distance_between_camera_and_ball = config_data['setup']['initial_distance_between_camera_and_ball']
             
             self.ball_detector_strategy = config_data['strategy']['ball_detector']
-            self.ball_tracker_strategy = config_data['strategy']['ball_tracker']
             self.world_coordinate_estimator_strategy = config_data['strategy']['world_coordinate_estimator']
             self.speed_vector_estimator_strategy = config_data['strategy']['speed_vector_estimator']
             
             self.ball_detector_yolov8_model_size = config_data['ball_detector']['yolov8_model_size']
             self.ball_detector_ball_class_id = config_data['ball_detector']['ball_class_id']
-            self.ball_tracker_dummy_parameter = config_data['ball_tracker']['dummy_parameter']
+            self.ball_detector_initial_search_region_bbox = config_data['ball_detector']['initial_search_region_bbox']
+            self.ball_detector_history_depth = config_data['ball_detector']['history_depth']
+            self.ball_detector_bbox_size_multiplier = config_data['ball_detector']['bbox_size_multiplier']
             self.world_coordinate_estimator_dummy_parameter = config_data['world_coordinate_estimator']['dummy_parameter']
             self.speed_vector_estimator_history_depth = config_data['speed_vector_estimator']['history_depth']
             

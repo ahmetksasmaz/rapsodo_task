@@ -18,7 +18,7 @@ setup:
 # Strategy Parameters
 strategy:
   ball_detector: "default"
-  ball_tracker: "default"
+  ball_detector: "default"
   world_coordinate_estimator: "default"
   speed_vector_estimator: "default"
 
@@ -26,10 +26,9 @@ strategy:
 ball_detector:
   yolov8_model_size: "x" # n s m l x
   ball_class_id: 32
-
-# Ball Tracker Parameters
-ball_tracker:
-  dummy_parameter: 0
+  initial_search_region_bbox: [263, 390, 500, 500] # Center of the image with 500x500 box
+  history_depth: 5
+  bbox_size_multiplier: 10.0
 
 # World Coordinate Estimator Parameters
 world_coordinate_estimator:

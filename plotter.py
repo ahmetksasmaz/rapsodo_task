@@ -41,6 +41,11 @@ class Plotter:
         
         # Plotting Speed
         ball_avg_speed_plot = plt.figure(1)
+        ax = plt.gca()
+        ax.set_xlim([0, 15])
+        ax.set_ylim([0, 60])
+        ax.set_xlabel('Frame Number')
+        ax.set_ylabel('Speed')
         
         plt.plot(frame_indices, ball_avg_speed)
         ball_avg_speed_plot.savefig("ball_avg_speed_plot.png")
@@ -48,6 +53,11 @@ class Plotter:
 
         # Plotting Ground Truth Errors
         gt_ball_bbox_iou_plot = plt.figure(2)
+        ax = plt.gca()
+        ax.set_xlim([0, 15])
+        ax.set_ylim([0, 1.0])
+        ax.set_xlabel('Frame Number')
+        ax.set_ylabel('Ground Truth Ball Bbox IOU')
         plt.plot(frame_indices, gt_ball_bbox_iou)
         gt_ball_bbox_iou_plot.savefig("gt_ball_bbox_iou_plot.png")
         plt.close(gt_ball_bbox_iou_plot)
@@ -63,7 +73,7 @@ class Plotter:
         ax.set_zlabel('Z')
         plt.plot(ball_3d_center_x, ball_3d_center_y, ball_3d_center_z)
         ball_3d_center_plot.savefig("ball_3d_center_plot.png")
-        plt.show()
+        # plt.show()
         plt.close(ball_3d_center_plot)
 
 if __name__ == "__main__":

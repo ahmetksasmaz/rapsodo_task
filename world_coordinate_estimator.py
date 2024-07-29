@@ -11,5 +11,5 @@ class WorldCoordinateEstimator:
         
     def process(self, message):
         metadata = message.metadata
-        center_3d = self.strategy.process(metadata.ball_target_bbox)
+        center_3d = self.strategy.process(metadata.ball_bbox)
         metadata.ball_3d_center = center_3d

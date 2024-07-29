@@ -6,7 +6,6 @@ from dummy_metadata_generator import DummyMetadataGenerator
 from configuration import Configuration
 from gt_error_calculator import GroundTruthErrorCalculator
 from ball_detector import BallDetector
-from ball_tracker import BallTracker
 from world_coordinate_estimator import WorldCoordinateEstimator
 from speed_vector_estimator import SpeedVectorEstimator
 from metadata_exporter import MetadataExporter
@@ -20,7 +19,6 @@ class Runner:
         self.dummy_metadata_generator = DummyMetadataGenerator()
         self.gt_error_calculator = GroundTruthErrorCalculator()
         self.ball_detector = BallDetector(self.configuration)
-        self.ball_tracker = BallTracker(self.configuration)
         self.world_coordinate_estimator = WorldCoordinateEstimator(self.configuration)
         self.speed_vector_estimator = SpeedVectorEstimator(self.configuration)
         self.metadata_exporter = MetadataExporter(self.output_file_path)
@@ -35,11 +33,8 @@ class Runner:
             # Detect Ball
             self.ball_detector.process(message)
             
-            # Track Target Ball
-            self.ball_tracker.process(message)
-            
             # Unfortunately target ball is not detected for this frame
-            if message.metadata.ball_target_bbox is None:
+            if message.metadata.ball_bbox is None:
                 continue
             
             # Ground Truth Equalizer

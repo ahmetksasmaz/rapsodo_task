@@ -23,8 +23,7 @@ class Point3D:
         return f'({self.x}, {self.y}, {self.z})'
 
 class Metadata:
-    ball_bboxes = None
-    ball_target_bbox = None
+    ball_bbox = None
     ball_3d_center = None
     ball_avg_3d_speed_vector = None
     
